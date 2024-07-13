@@ -1,12 +1,17 @@
 const {deleteFactory, updateFactory, createFactory, getOneFactory, getAllFactory} = require("../controllers/handlerFactory");
 const catchAsync=require('../utils/catchAsync');
 const AppError = require("../utils/appError");
+const {populate} = require("dotenv");
 
-let req,res,next,Model;
+let req,res,next,Model,populatMock;
 beforeEach(()=> {
+    populatMock=jest.fn();
     Model = {
         findByIdAndDelete: jest.fn(),
-        findByIdAndUpdate: jest.fn()
+        findByIdAndUpdate: jest.fn(),
+        findById:jest.fn(()=>({
+            populate:populatMock
+        })),
     }
     req = {
         params: {
@@ -73,4 +78,43 @@ describe('Update document factory',()=>{
     it('should handle errors thrown by findByIdAndDelete', async () => {
         await handleDatabaseError(updateFactory,Model.findByIdAndUpdate)
     });
+})
+
+describe('Get one document factory',()=>{
+    const populateOption={}
+    it('should give you a document',async ()=>{
+        const queryMock=jest.fn().mockResolvedValueOnce({})
+        populatMock.mockReturnValueOnce(queryMock());
+        await getOneFactory(Model,populateOption)(req,res,next);
+        expect(Model.findById).toBeCalledWith(req.params.id);
+        expect(populatMock).toBeCalledWith(populateOption);
+        expect(res.status).toBeCalledWith(200);
+        const returned_obj=res.json.mock.calls[0][0];
+        expect(returned_obj.status).toBe("success");
+    })
+    it('shouldn\'t found the document and return 404',async ()=>{
+        const queryMock=jest.fn().mockResolvedValueOnce()
+        populatMock.mockReturnValueOnce(queryMock());
+        await getOneFactory(Model,populateOption)(req,res,next);
+        expect(Model.findById).toBeCalledWith(req.params.id);
+        expect(populatMock).toBeCalledWith(populateOption);
+        expect(res.status).not.toHaveBeenCalled();
+        expect(res.json).not.toHaveBeenCalled();
+        expect(next).toBeCalledWith(expect.any(AppError));
+    })
+    it('should handle errors thrown by findById',async ()=>{
+        const error = new Error('Database error');
+        const queryMock=jest.fn().mockRejectedValueOnce(error)
+        populatMock.mockReturnValueOnce(queryMock());
+        await getOneFactory(Model,populateOption)(req,res,next);
+        expect(Model.findById).toBeCalledWith(req.params.id);
+        expect(populatMock).toHaveBeenCalled();
+        expect(res.status).not.toHaveBeenCalled();
+        expect(res.json).not.toHaveBeenCalled();
+        expect(next).toHaveBeenCalled();
+        const return_error=next.mock.calls[0][0];
+        expect(return_error.message).toBe("Database error")
+        expect(res.status).not.toHaveBeenCalled();
+        expect(res.json).not.toHaveBeenCalled();
+    })
 })

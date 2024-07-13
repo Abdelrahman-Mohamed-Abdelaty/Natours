@@ -38,9 +38,9 @@ exports.updateFactory=Model=>catchAsync(async (req,res,next)=>{
     })
 })
 exports.getOneFactory=(Model,populatOptions)=>catchAsync (async (req,res,next)=>{
-    const query=  Model.findById(req.params.id);
+    let query=  Model.findById(req.params.id);
     if(populatOptions){
-        query.populate(populatOptions);
+        query=query.populate(populatOptions);
     }
     const document=await query;
     if(!document){
