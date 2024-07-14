@@ -155,6 +155,5 @@ describe('Get all documents factory', ()=>{
         expect(return_error.message).toBe("Database error")
         expect(res.status).not.toHaveBeenCalled();
         expect(res.json).not.toHaveBeenCalled();
-
     })
 })
