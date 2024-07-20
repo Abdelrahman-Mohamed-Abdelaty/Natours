@@ -1,7 +1,7 @@
 const puppeteer=require('puppeteer');
 
 async function main(){
-    const browser=await puppeteer.launch();//{headless:false}
+    const browser=await puppeteer.launch({headless:false});
     const page=await browser.newPage();
     console.log('e2e test is being processed...')
     await page.goto('http://localhost:3000/login');
