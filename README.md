@@ -1,3 +1,7 @@
+Sure! Here's the updated version of the README with the new information about unit testing, integration testing with Jest, and end-to-end testing with Puppeteer included:
+
+---
+
 ![Natours Logo](https://github.com/abdomohamed96/Natours/blob/main/public/img/logo-green.png?raw=true)
 
 **Natours** is an exceptional tour booking site built with Node.js. It offers a wide range of features, enabling users to search and book tours, manage their bookings, and update their profiles. The site includes authentication and authorization functionalities, allowing users to securely log in and log out. On the tour page, users can explore tours on a map, read user reviews, and view ratings. Additionally, users can make payments for tours using a credit card.
@@ -23,6 +27,7 @@
   - [Security and Performance](#security-and-performance)
   - [User Experience](#user-experience)
   - [Payment Processing](#payment-processing)
+  - [Testing](#testing)
   - [Development and Deployment](#development-and-deployment)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
@@ -73,6 +78,11 @@
 - **Stripe Integration**: Secure and seamless credit card payments for booking tours.
 - **Webhooks**: Handling Stripe webhooks for payment confirmations and booking management.
 
+### Testing
+
+- **Unit Testing and Integration Testing with Jest**: Comprehensive unit and integration tests to ensure code quality and functionality.
+- **End-to-End Testing with Puppeteer**: Simulate user interactions and verify the complete flow of the application using Puppeteer.
+
 ### Development and Deployment
 
 - **Development Tools**: Debugging with ndb, handling unhandled routes, and error handling during development.
@@ -100,6 +110,8 @@
 - **Dotenv**: Module to load environment variables from a `.env` file.
 - **Bcrypt**: Library to hash passwords.
 - **Validator**: Library to validate and sanitize strings.
+- **Jest**: JavaScript testing framework for unit and integration testing.
+- **Puppeteer**: Node library to control headless Chrome or Chromium for end-to-end testing.
 
 ---
 
@@ -111,7 +123,7 @@ To get started with Natours, follow these steps:
    ```bash
    git clone git@github.com:abdomohamed96/Natours.git
    cd Natours
-
+   ```
 
 2. **Install Dependencies**:
     ```sh
@@ -128,4 +140,3 @@ To get started with Natours, follow these steps:
 ## Contributing
 
 I welcome contributions! Please fork the repository and create a pull request with your changes.
-
