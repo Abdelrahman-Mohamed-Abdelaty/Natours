@@ -1,7 +1,3 @@
-Sure! Here's the updated version of the README with the new information about unit testing, integration testing with Jest, and end-to-end testing with Puppeteer included:
-
----
-
 ![Natours Logo](https://github.com/abdomohamed96/Natours/blob/main/public/img/logo-green.png?raw=true)
 
 **Natours** is an exceptional tour booking site built with Node.js. It offers a wide range of features, enabling users to search and book tours, manage their bookings, and update their profiles. The site includes authentication and authorization functionalities, allowing users to securely log in and log out. On the tour page, users can explore tours on a map, read user reviews, and view ratings. Additionally, users can make payments for tours using a credit card.
