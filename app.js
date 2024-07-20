@@ -15,7 +15,6 @@ const reviewRouter=require("./routes/review")
 const viewRouter=require("./routes/view")
 const bookingRouter=require("./routes/booking")
 const bookingController=require("./controllers/booking")
-const {static} = require("express");
 const compression=require('compression');
 const cors=require('cors')
 const bodyParser=require('body-parser');

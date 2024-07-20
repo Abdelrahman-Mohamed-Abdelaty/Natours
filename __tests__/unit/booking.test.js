@@ -1,13 +1,13 @@
-const bookingController=require("../controllers/booking")
+const bookingController=require("../../controllers/booking")
 const stripe=require('stripe');
-const Tour=require("../models/tour");
+const Tour=require("../../models/tour");
 
 let req,res,next;
 
 const tour={id:1,name:'tour',summary:'',imageCover:'',price:2,slug:"tour-tour"};
 const session={id:1};
 
-jest.mock("../models/tour",()=>({
+jest.mock("../../models/tour",()=>({
     findById:jest.fn()
 }))
 jest.mock('stripe',()=>()=>({

@@ -5,6 +5,7 @@ process.on('uncaughtException',err=>{
 const app=require("./app");
 const mongoose=require("mongoose");
 const dotenv=require("dotenv");
+const {protect} = require("./controllers/authController");
 dotenv.config({path:"./config.env"})
 const PORT=process.env.PORT||3000;
 const server=app.listen(PORT,async ()=>{
@@ -14,6 +15,7 @@ const server=app.listen(PORT,async ()=>{
         useNewUrlParser:true,
         useFindAndModify:false
     })
+    // console.log(process.env.NODE_ENV)
     console.log("connected successfully to database")
 });
 process.on('unhandledRejection',err=>{
@@ -26,3 +28,4 @@ process.on('unhandledRejection',err=>{
     }
 );
 
+module.exports= {server,mongoose};

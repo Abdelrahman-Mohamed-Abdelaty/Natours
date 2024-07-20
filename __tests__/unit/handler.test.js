@@ -1,9 +1,9 @@
-const {deleteFactory, updateFactory, createFactory, getOneFactory, getAllFactory} = require("../controllers/handlerFactory");
-const catchAsync=require('../utils/catchAsync');
-const AppError = require("../utils/appError");
+const {deleteFactory, updateFactory, createFactory, getOneFactory, getAllFactory} = require("../../controllers/handlerFactory");
+const catchAsync=require('../../utils/catchAsync');
+const AppError = require("../../utils/appError");
 const {populate} = require("dotenv");
-const APIfeature=require('../utils/APIFeature')
-jest.mock('../utils/APIFeature')
+const APIfeature=require('../../utils/APIFeature')
+jest.mock('../../utils/APIFeature')
 let req,res,next,Model,populatMock;
 
 beforeEach(()=> {

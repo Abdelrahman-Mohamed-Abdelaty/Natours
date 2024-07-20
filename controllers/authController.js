@@ -62,7 +62,7 @@ exports.protect=catchAsync(async (req,res,next)=>{
         token=req.cookies.jwt
     }
     if(!token){
-       return next(new AppError("you are not logged in,log in to get access "))
+       return next(new AppError("you are not logged in,log in to get access",401))
     }
     //verify the token
     const decoded=await promisify(jwt.verify)(token,process.env.JWT_SECRET);     //throw error if invalid signature else return payload
