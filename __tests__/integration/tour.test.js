@@ -10,6 +10,5 @@ describe('get all tours',()=>{
         const res= await request(server).get('/api/v1/tours');
         expect(res._body.status).toMatch('success')
         expect(res.status).toBe(200);
-
     })
 })

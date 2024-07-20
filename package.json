@@ -5,6 +5,7 @@
   "scripts": {
     "test:int": "jest --coverage  __tests__/integration --runInBand",
     "test:unit": "jest --coverage __tests__/unit",
+    "test:e2e": "node __tests__/e2e/tour.test.js",
     "start": "node server.js",
     "start:dev": "NODE_ENV=development nodemon server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
@@ -33,6 +34,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.13",
     "pug": "^2.0.0-beta11",
+    "puppeteer": "^22.13.1",
     "sharp": "^0.33.4",
     "slugify": "^1.6.6",
     "stripe": "^7.0.0",
