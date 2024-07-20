@@ -63,3 +63,30 @@ describe('delete user',()=>{
 
     },10*1000)
 })
+//admin admin@gmail.com with password 12345678
+describe('get all users',()=>{
+    it('should get all users',async ()=>{
+        const loggedin_admin=(await request(server)
+            .post('/api/v1/users/login')
+            .send({
+                email:"admin@gmail.com",
+                password:"12345678"
+            }))._body
+        const cookie=`jwt=${loggedin_admin.token}`;
+        const users =(await request(server).get('/api/v1/users/').set('Cookie',cookie))._body
+        expect(users.status).toMatch("success");
+    })
+    it('should fail due to it\'s not admin',async ()=>{
+        const loggedin_admin=(await request(server)
+            .post('/api/v1/users/login')
+            .send({
+                email:"user@gmail.com",
+                password:"12345678"
+            }))._body
+        const cookie=`jwt=${loggedin_admin.token}`;
+        const msg =(await request(server).get('/api/v1/users/').set('Cookie',cookie))._body
+        console.log(msg)
+        expect(msg.status).toMatch("fail");
+        expect(msg.message).toMatch("you don't have permssion to perform this action")
+    })
+})
